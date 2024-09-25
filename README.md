@@ -1,70 +1,220 @@
-# Getting Started with Create React App
+# 📕 DigitalBookHub 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Done as a part of AML 1204: Python Programming In Canada @ Lambton College -  Group project
 
-## Available Scripts
+This is the repository which holds the code for the DigitalBookHub, a CRUD application for a public digital e-library system.
 
-In the project directory, you can run:
+![Web application user interface](/assets/UI.jpeg)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Features:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Users can search, view and download books.
+- Registered users can upload books.
 
-### `npm test`
+## Team Members 🧑🏻‍🤝‍🧑🏼
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- C0904675 - [Yolimar Rios](https://github.com/yolimar01)
+- C0908671 - [Chris Mary Bulatao](https://github.com/ChrisMary-Bulatao)
+- C0903980 - [Vihangi Kolamunna](https://github.com/vihangihk)
+- C0906287 - [William Binitie](https://github.com/Jaimewill0511)
+- C0918066 - [Galgamuge Emmanuel Fernando](https://github.com/RuFerdZ)
 
-### `npm run build`
+## Pre-requisites 🛠
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node JS](https://nodejs.org/en/) stable version.
+- [python 3.x](https://www.python.org/downloads/) and configure path.
+- [virtualenv](https://pypi.org/project/virtualenv/) python library
+- [PostgresSQL](https://www.postgresql.org/download/windows/) v11.x.
+- [PostGis](https://postgis.net/documentation/getting_started/) extension.
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Optional - only if running via docker).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## URLs
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Access the web application: ```http://localhost:8000```
+- Access the admin dashboard: ```http://localhost:8000/admin```
+- Postman collection: [Collection](https://elements.getpostman.com/redirect?entityId=9209211-6116f7ed-2c3f-41a5-baef-569e9fd62799&entityType=collection)
 
-### `npm run eject`
+## Frontend Configuration 🖼
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1) Navigate to ```"\webapp"```:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        D:\DigitalBookHub> cd webapp
+        D:\DigitalBookHub\webapp>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2) Run the below command to install the required node modules for the web application:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+        D:\DigitalBookHub\webapp> npm install
 
-## Learn More
+3) Build the project:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+         D:\DigitalBookHub\webapp> npm run build
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4) Once the node modules are installed, run the below command to start the web application:
 
-### Code Splitting
+        D:\DigitalBookHub\webapp> npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5) The web application will be servered via ```"http://localhost:3000"```
 
-### Analyzing the Bundle Size
+## Database Configuration 🗃
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1) Create the database and user.
 
-### Making a Progressive Web App
+    Open Windows Command Prompt (CMD) and enter the below commands (outputs are also shown).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    Log into postgreSQL as default user postgres and enter password setup during installation:
 
-### Advanced Configuration
+        C:\Windows\System32> psql -U postgres
+        Password for user postgres:
+        psql (11.21)
+        WARNING: Console code page (437) differs from Windows code page (1252)
+                8-bit characters might not work correctly. See psql reference
+                page "Notes for Windows users" for details.
+        Type "help" for help.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+        postgres=#
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    Create database "digitalbookhub":
+        
+        postgres=# CREATE DATABASE digitalbookhub;
+        CREATE DATABASE
+    
+    Create user "dhb":
 
-### `npm run build` fails to minify
+        postgres=# CREATE USER dbh;
+        CREATE ROLE
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    Set user with encrypted password "dbh" (in our case, password is same as username):
+    
+        postgres=# ALTER USER dbh WITH ENCRYPTED PASSWORD 'dbh';
+        ALTER ROLE
+
+2) Configure user and database.
+
+    Connect to the database:
+
+        postgres=# \c digitalbookhub
+        You are now connected to database "digitalbookhub" as user "postgres".
+        digitalbookhub=# 
+
+    Create schema "digitalbookhub"
+
+        digitalbookhub=# CREATE SCHEMA digitalbookhub;
+        CREATE SCHEMA
+
+    Grant all the privileges of the database to the user:
+
+        digitalbookhub=# GRANT ALL PRIVILEGES ON DATABASE digitalbookhub TO dbh;
+        GRANT
+
+    Grant all privieges of the schema tables to the user:
+
+        digitalbookhub=# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA digitalbookhub TO dbh;
+        GRANT
+
+    Grant all settings of schema to the user:
+
+        digitalbookhub=# GRANT ALL ON SCHEMA digitalbookhub TO dbh;
+        GRANT
+
+    Grant all usages of schema to the user:
+
+        digitalbookhub=# GRANT USAGE ON SCHEMA digitalbookhub TO dbh;
+        GRANT
+
+    Create and enable postgis extension on the database:
+
+        digitalbookhub=# CREATE EXTENSION postgis;
+        CREATE EXTENSION
+
+    Close the command prompt window.
+    
+3) Connect to the database.
+
+    The below are the database properties. You can connect to the database via the CMD or any database IDEs.
+
+    - host: jdbc:postgresql://localhost:5432/digitalbookhub
+    
+    - username: dbh
+
+    - password: dbh
+
+## Backend Configuration ⚙
+
+1. Navigate to ```"\backend"```:
+
+        D:\DigitalBookHub> cd backend
+        D:\DigitalBookHub\backend>
+
+2. Create new virtual environment called ```"venv"```:
+
+        D:\DigitalBookHub\backend> virtualenv venv
+
+3. Log in to the virtual environment:
+
+         D:\DigitalBookHub\backend> .\venv\Scripts\activate
+         (venv) D:\DigitalBookHub\backend> 
+
+4. Install all the requirements required to run the backend:
+
+        (venv) D:\DigitalBookHub\backend> pip install -r requirements.txt
+
+5. Run the backend:
+
+        (venv) D:\DigitalBookHub\backend> python manage.py runserver
+        Watching for file changes with StatReloader
+        Performing system checks...
+
+        System check identified no issues (0 silenced).
+
+        You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+        Run 'python manage.py migrate' to apply them.
+        December 10, 2023 - 02:00:33
+        Django version 5.0, using settings 'backend.settings'
+        Starting development server at http://127.0.0.1:8000/
+        Quit the server with CTRL-BREAK.
+
+
+
+
+## Run via Docker 🐳
+
+1. Build the Docker image:
+
+        D:\DigitalBookHub> docker build -t digitalbookhub-image .
+
+2. View the built docker image:
+
+        D:\DigitalBookHub> docker image ls
+        REPOSITORY             TAG       IMAGE ID       CREATED         SIZE
+        digitalbookhub-image   latest    f9ef80828781   2 minutes ago   122MB
+        D:\DigitalBookHub>
+
+
+3. Run the docker image in detached mode:
+
+        D:\DigitalBookHub> docker run -d -p 8000:8000  --name digitalbookhub digitalbookhub-image
+        97383644a834c7121ef9a827a345bb5ebafd6f6adb4e71232d13b45fd0456a66
+        D:\DigitalBookHub>
+
+4. Confirm the container is running:
+        
+        D:\DigitalBookHub> docker ps
+        CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS          PORTS                    NAMES
+        97383644a834   digitalbookhub-image   "uvicorn main:app --…"   55 seconds ago   Up 54 seconds   0.0.0.0:8000->8000/tcp   digitalbookhub
+        D:\DigitalBookHub>
+
+    The container status should be ```"up"```.
+
+
+5. Access via the browser:
+
+    - http://localhost:8000/
+
+
+## Resources 🌐
+- [Django Rest Framework Documentation](https://www.django-rest-framework.org/tutorial/quickstart/)
+- [ReactJS Documentation](https://react.dev/blog/2023/03/16/introducing-react-dev)
+- [DRF Github Projects](https://github.com/RealmTeam/django-rest-framework-social-oauth2)
+- [W3Schools](https://www.w3schools.com/)
