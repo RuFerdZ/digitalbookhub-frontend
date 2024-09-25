@@ -1,7 +1,5 @@
 # 📕 DigitalBookHub 
 
-> Done as a part of AML 1204: Python Programming In Canada @ Lambton College -  Group project
-
 This is the repository which holds the code for the DigitalBookHub, a CRUD application for a public digital e-library system.
 
 ![Web application user interface](/assets/UI.jpeg)
@@ -37,24 +35,19 @@ Features:
 
 ## Frontend Configuration 🖼
 
-1) Navigate to ```"\webapp"```:
-
-        D:\DigitalBookHub> cd webapp
-        D:\DigitalBookHub\webapp>
-
-2) Run the below command to install the required node modules for the web application:
+1) Run the below command to install the required node modules for the web application:
 
         D:\DigitalBookHub\webapp> npm install
 
-3) Build the project:
+2) Build the project:
 
          D:\DigitalBookHub\webapp> npm run build
 
-4) Once the node modules are installed, run the below command to start the web application:
+3) Once the node modules are installed, run the below command to start the web application:
 
         D:\DigitalBookHub\webapp> npm start
 
-5) The web application will be servered via ```"http://localhost:3000"```
+4) The web application will be servered via ```"http://localhost:3000"```
 
 ## Database Configuration 🗃
 
@@ -142,25 +135,20 @@ Features:
 
 ## Backend Configuration ⚙
 
-1. Navigate to ```"\backend"```:
-
-        D:\DigitalBookHub> cd backend
-        D:\DigitalBookHub\backend>
-
-2. Create new virtual environment called ```"venv"```:
+1. Create new virtual environment called ```"venv"```:
 
         D:\DigitalBookHub\backend> virtualenv venv
 
-3. Log in to the virtual environment:
+2. Log in to the virtual environment:
 
          D:\DigitalBookHub\backend> .\venv\Scripts\activate
          (venv) D:\DigitalBookHub\backend> 
 
-4. Install all the requirements required to run the backend:
+3. Install all the requirements required to run the backend:
 
         (venv) D:\DigitalBookHub\backend> pip install -r requirements.txt
 
-5. Run the backend:
+4. Run the backend:
 
         (venv) D:\DigitalBookHub\backend> python manage.py runserver
         Watching for file changes with StatReloader
